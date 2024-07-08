@@ -1,0 +1,5 @@
+FROM demo_image_2
+
+RUN echo "New Line second update" >> /var/www/html/index.html
+
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
