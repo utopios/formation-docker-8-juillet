@@ -51,4 +51,4 @@ USER admin
 
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
-CMD ["apache2-foreground"]
+#CMD ["apache2-foreground"]
