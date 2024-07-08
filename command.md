@@ -27,3 +27,11 @@ docker rm <options> <id_ou_conteneur>
 ```bash
 docker exec <id_ou_nom_conteneur> <commande>
 ```
+
+## Une commande pour récupérer les informations d'un conteneur.
+```bash
+docker inspect <nom_conteneur>
+```
+
+## Localisation du fichier de conf nginx
+- dans /etc/nginx/conf.d/default.conf
