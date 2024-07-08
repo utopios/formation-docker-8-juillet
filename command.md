@@ -35,3 +35,17 @@ docker inspect <nom_conteneur>
 
 ## Localisation du fichier de conf nginx
 - dans /etc/nginx/conf.d/default.conf
+
+
+## Ajouter des variables env à la création du conteneur.
+
+```bash
+docker run -it -e DEMO_ENV="value demo env" ubuntu bash 
+```
+
+## Accèder aux logs d'un conteneur
+
+```bash
+docker logs <id_ou_nom_conteneur>
+```
+
