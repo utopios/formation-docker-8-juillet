@@ -1,7 +1,7 @@
 ## Stage build
 FROM php:8.1-cli as builder
 
-RUN apt update && apt install -y zip unzip git && docker-php-ext-install pdo pdo_pgsql
+RUN apt update && apt install -y zip unzip git libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
 RUN useradd -md /bin/bash admin
 
@@ -26,7 +26,7 @@ FROM php:8.1-apache
 
 WORKDIR /var/www/html/
 
-RUN apt update && apt install iputils-ping -y && docker-php-ext-install pdo pdo_pgsql
+RUN apt update && apt install iputils-ping libpq-dev -y && docker-php-ext-install pdo pdo_pgsql
 
 RUN useradd -md /bin/bash admin
 

@@ -1,7 +1,7 @@
 ## Stage build
 FROM php:8.1-cli as builder
 
-RUN apt update && apt install -y zip unzip git && docker-php-ext-install pdo pdo_pgsql
+RUN apt update && apt install -y zip unzip git libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
 RUN useradd -md /bin/bash admin
 
@@ -26,7 +26,7 @@ FROM php:8.1-apache
 
 WORKDIR /var/www/html/
 
-RUN apt update && apt install iputils-ping -y && docker-php-ext-install pdo pdo_pgsql
+RUN apt update && apt install iputils-ping libpq-dev -y && docker-php-ext-install pdo pdo_pgsql
 
 RUN useradd -md /bin/bash admin
 
@@ -40,6 +40,15 @@ RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/conf-ava
 
 RUN a2enmod rewrite
 
-USER  admin
+
+WORKDIR /var/www/html
+
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+USER admin
+
+ENTRYPOINT [ "docker-entrypoint.sh" ]
 
 CMD ["apache2-foreground"]
