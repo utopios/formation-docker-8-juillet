@@ -1,0 +1,26 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    ports:
+      - "8080:80"
+  
+  php:
+    build:
+      context: . 
+      dockerfile: Dockerfile.app
+    environment:
+      - DATABASE_URL=postgresql://symfony:ChangeMe@postgres:5432/app
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_USER=symfony
+      - POSTGRES_PASSWORD=ChangeMe
+      - POSTGRES_DB=app
+    volumes:
+      - "db-data:/var/lib/postgres/data"
+
+volumes:
+  db-data:
