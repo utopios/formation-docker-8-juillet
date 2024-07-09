@@ -1,7 +1,7 @@
 services:
   webnginx:
     #image: nginx
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile.nginx
     container_name: nginx_container
