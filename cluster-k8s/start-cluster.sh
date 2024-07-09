@@ -5,7 +5,7 @@ kind create cluster --name formation --config src/kind/config.yaml
 # Deploy a Helm Release named "kubernetes-dashboard" using the kubernetes-dashboard chart
 #helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard
 
-kubectl create -f src/k8s/k8s.yaml
+#kubectl create -f src/k8s/k8s.yaml
 
 #kubectl -n kubernetes-dashboard create token admin-user 
 
