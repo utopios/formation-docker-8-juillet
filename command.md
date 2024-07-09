@@ -53,3 +53,6 @@ docker logs <id_ou_nom_conteneur>
 ```bash
 docker compose build --no-cache
 ```
+
+### Commande pour le scaling
+docker compose up -d --scale <nom_service>=<nombre_instance>
