@@ -1,0 +1,7 @@
+services:
+  web:
+    extends: 
+      file: docker-compose.base.yaml
+      service: web
+    ports:
+      - "8082:80"

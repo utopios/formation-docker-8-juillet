@@ -49,3 +49,7 @@ docker run -it -e DEMO_ENV="value demo env" ubuntu bash
 docker logs <id_ou_nom_conteneur>
 ```
 
+### Commande docker compose
+```bash
+docker compose build --no-cache
+```

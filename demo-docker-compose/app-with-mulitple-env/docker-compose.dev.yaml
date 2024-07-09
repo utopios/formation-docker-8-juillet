@@ -1,0 +1,7 @@
+services:
+  php:
+    extends:
+      file: docker-compose.yaml
+      service: php
+    environment:
+      - DATABASE_URL=postgresql://symfony:ChangeMe@postgres:5432/appdev
