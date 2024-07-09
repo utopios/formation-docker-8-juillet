@@ -14,6 +14,10 @@ RUN dotnet publish -c Release -o /out Worker.csproj
 #image run
 FROM mcr.microsoft.com/dotnet/core/runtime:3.1
 
+COPY ./script.sh /usr/local/bin/healthcheck.sh
+
+RUN chmod +x /usr/local/bin/healthcheck.sh
+
 WORKDIR /app
 
 COPY --from=build /out .

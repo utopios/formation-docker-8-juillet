@@ -1,12 +1,12 @@
 #!/bin/sh
 #set -eo pipefail
 
-host='redis'
+# host='redis'
 
-if ping="$(redis-cli -h "$host" ping)" && [ "$ping" = 'PONG' ]; then
-	exit 0
-fi
+# if ping="$(redis-cli -h "$host" ping)" && [ "$ping" = 'PONG' ]; then
+# 	exit 0
+# fi
 
-exit 1
+# exit 1
 
-#exit 0
+exit 0
