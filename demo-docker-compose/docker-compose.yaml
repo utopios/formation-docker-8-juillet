@@ -1,0 +1,35 @@
+services:
+  webnginx:
+    #image: nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    container_name: nginx_container
+    ports:
+      - "7001:80"
+    networks:
+      - custom_bridge
+  
+  webapache:
+    image: php:8.1-apache
+    ports:
+      - "6001:80"
+    networks:
+      - custom_bridge
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=db
+    networks:
+      - custom_bridge
+    volumes:
+      - "db-data:/var/lib/postgres/data"
+      - "/tmp"
+
+networks:
+  custom_bridge:
+
+volumes:
+  db-data:
