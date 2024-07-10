@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: tp-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tp-postgres
+  template:    
+    metadata:
+      name: tp-postgres
+      namespace: tp-kubernetes
+      labels:
+        app: tp-postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:9.4
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: vol-postgres
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: POSTGRE_USER
+                  name: tp-config-map
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: POSTGRES_PASSWORD
+                  name: tp-secrets
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "128Mi"
+      volumes:
+        - name: vol-postgres
+          persistentVolumeClaim:
+            claimName: tp-volume-claim
+

@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  namespace: tp-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tp-redis
+  template:    
+    metadata:
+      name: tp-redis
+      namespace: tp-kubernetes
+      labels:
+        app: tp-redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:5.0-alpine3.10
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+          resources:
+            limits:
+              cpu: "100m"
+              memory: "128Mi"

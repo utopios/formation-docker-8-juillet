@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tp-volume-claim
+  namespace: tp-kubernetes
+spec:
+  storageClassName: standard
+  selector:
+    matchLabels:
+      storage: good-one
+  resources:
+    requests:
+      storage: 1Gi
+  accessModes:
+    - ReadWriteMany

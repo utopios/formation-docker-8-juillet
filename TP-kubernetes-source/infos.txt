@@ -1,0 +1,23 @@
+-postgres : 
+    -l'utilisateur => postgres, le mot de passe => postgres
+    -le service qui renvoie vers postgres doit s'appeler db
+    - image postgres:9.4
+        
+        - variables env:
+            POSTGRES_USER => postgres
+            POSTGRES_PASSWORD => postgres
+
+-redis:
+    - le service qui renvoie vers redis doit d'appeler redis.
+
+Etapes:
+    0 - Recréer un cluster kind avec le bon mapping des ports. Fait
+    1 - Créer les images local Fait, envoie des images dans le cluster Fait.
+    2 - Créer le namespace et la configuration des quotas Fait.
+    3 - Créer les services Fait.
+    4 - Créer les déploiements.
+
+ - On souhaite ajouter un volume pour postgres.
+ - On souhaite partager les variables d'env du deploiement postgres par des ConfigMaps et des secrets.
+
+
