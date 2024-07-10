@@ -25,5 +25,10 @@ spec:
             configMapKeyRef:
               key: POSTGRES_USER
               name: myapp-config
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: POSTGRES_PASSWORD
+              name: mysecret
         ports:
         - containerPort: 80
