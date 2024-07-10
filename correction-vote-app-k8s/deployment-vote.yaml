@@ -1,26 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: d2
+  name: vote
 spec:
   selector:
     matchLabels:
-      app: app2
-  replicas: 2
+      app: vote
   template:
     metadata:
       labels:
-        app: app2
+        app: vote
     spec:
       containers:
-      - name: app
-        image: php:8.1-apache
+      - name: vote
+        imagePullPolicy: Never
+        image: tp-docker-compose-vote
         resources:
           limits:
             memory: "128Mi"
             cpu: "500m"
         ports:
         - containerPort: 80
-        env:
-          - name: POSTGRES_USER
-            value: ""
+        
