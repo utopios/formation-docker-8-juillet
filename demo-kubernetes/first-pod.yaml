@@ -8,6 +8,7 @@ spec:
   containers:
   - name: myapp
     image: nginx
+    imagePullPolicy: Never # IfNotPresent, # Always
     resources:
       limits:
         memory: "128Mi"

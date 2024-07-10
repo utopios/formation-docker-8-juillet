@@ -66,8 +66,11 @@ kubectl apply -f <chemin_vers_fichier>
 
 - Récupération des informations sur des ressources
 ```bash
-kubectl get <type_ressource>
+kubectl get <type_ressource> -n <namespace>
 ```
 
 -- Commande pour envoyer une image local vers un cluster kind
 kind load docker-image <nom_image> --name <nom_cluster>
+
+-- Commande pour créer un proxy entre le client et cluster pour tester le trafic vers une ressource
+kubectl port-forward <type_ressource>/<nom_ressource> <port_host>:<port_ressource>
