@@ -56,3 +56,18 @@ docker compose build --no-cache
 
 ### Commande pour le scaling
 docker compose up -d --scale <nom_service>=<nombre_instance>
+
+### Commande kubectl 
+
+- Création d'une ressource
+```bash
+kubectl apply -f <chemin_vers_fichier>
+```
+
+- Récupération des informations sur des ressources
+```bash
+kubectl get <type_ressource>
+```
+
+-- Commande pour envoyer une image local vers un cluster kind
+kind load docker-image <nom_image> --name <nom_cluster>
