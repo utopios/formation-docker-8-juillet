@@ -24,3 +24,6 @@ spec:
   - name: html
     persistentVolumeClaim:
       claimName: mypvc
+    # hostPath:
+    #   path: /data
+    #   type: DirectoryOrCreate

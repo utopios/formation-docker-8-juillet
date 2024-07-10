@@ -9,3 +9,19 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
+
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: mypvc
+# spec:
+#   storageClassName: standard
+#   selector:
+#     matchLabels:
+#       storage: good-one
+#   resources:
+#     requests:
+#       storage: 1Gi
+#   volumeMode: Filesystem
+#   accessModes:
+#     - ReadWriteOnce

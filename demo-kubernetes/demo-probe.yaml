@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    app: nginx-pod
+spec:
+  containers:
+    - name: container-nginx
+      image: nginx
+      imagePullPolicy: IfNotPresent
+      resources:
+        limits:
+          cpu: "1"
+          memory: "128Mi"
+      livenessProbe:
+        #-- Execute handler
+        # exec:
+        #   command:
+        #     #- "mkdir /tmp"
+        #     - "cat index2.html"
+        #-- HttpGet handler
+        httpGet:
+          path: /healty
+          port: 80
+          httpHeaders:
+            - name: "token-api"
+              value: "value-of-token-api"
+        #-- TcpSocket Handler
+        # tcpSocket:
+        #   port: 80
+        
+        periodSeconds: 10
+        initialDelaySeconds: 5
+      
+        
+
