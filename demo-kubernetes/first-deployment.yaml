@@ -19,5 +19,11 @@ spec:
           limits:
             memory: "128Mi"
             cpu: "500m"
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_USER
+              name: myapp-config
         ports:
         - containerPort: 80
