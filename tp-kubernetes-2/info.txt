@@ -1,0 +1,48 @@
+Images : 
+    - fluentd: fluent/fluentd-kubernetes-daemonset:v1-debian-elasticsearch
+        - variable environnements:
+        - FLUENT_ELASTICSEARCH_HOST =>
+        - FLUENT_ELASTICSEARCH_PORT => 9200
+        - FLUENT_ELASTICSEARCH_SCHEME
+            "http"
+        - FLUENT_ELASTICSEARCH_SSL_VERIFY
+            "true"
+        - FLUENT_ELASTICSEARCH_SSL_VERSION
+          "TLSv1_2"
+        - FLUENT_ELASTICSEARCH_USER
+          "admin"
+        - FLUENT_ELASTICSEARCH_PASSWORD
+         "elasticadmin"
+        - LOGZIO_TOKEN
+         "ThisIsASuperLongToken"
+        - LOGZIO_LOGTYPE
+         "kubernetes"
+        - FLUENT_CONTAINER_TAIL_PARSER_TYPE
+        "/^(?<time>.+) (?<stream>stdout|stderr) [^ ]* (?<log>.*)$/"
+
+    - elasticsearch: docker.elastic.co/elasticsearch/elasticsearch:7.16.1
+            - variable environnements:
+                ES_JAVA_OPTS => -Xms512m -Xmx512m
+            - Ports 9200, 9300
+
+    - kibana : docker.elastic.co/kibana/kibana:7.16.1
+            - variable
+                ELASTICSEARCH_URL => <nom_service>:port
+            
+            -port : 5601
+
+Etapes :
+    1 - Configurtion du cluster (kind) avec le mappage des ports. FAIT  
+    2 - Création des namespaces FATI. 
+    3 - Création des service account, role, bindingRole FAIT. 
+    4 - Création des volumes FAIT. 
+    5 - Création des services FAIT. 
+    6 - Création des networks policies FAIT. 
+    7 - Création des ressources pour les pods.
+        fluentd => daemonset FAIT.
+        elasticsearch => statefulset FAIT.
+        postgres => statefulset
+        mysql => statefulset
+        kibana => deployment
+
+https://www.eweek.com/cloud/kubernetes-best-practices/

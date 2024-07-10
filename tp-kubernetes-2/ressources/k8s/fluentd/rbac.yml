@@ -1,0 +1,44 @@
+### Service Account
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: fluentd
+  namespace: tp-monitoring
+  labels:
+    app: fluentd
+
+---
+
+## Création du role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: fluentd-role
+  labels:
+    name: fluentd-role
+rules:
+  - resources:
+      - pods
+      - namespaces
+    verbs:
+      - get
+      - list
+      - watch
+    apiGroups:
+      - ""
+ 
+---
+
+### Création du role binding
+apiVersion: rbac.authorization.k8s.io/v1 
+kind: ClusterRoleBinding
+metadata:
+  name: fluentd-cluster-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: fluentd-role
+subjects:
+  - kind: ServiceAccount
+    name: fluentd
+    namespace: tp-monitoring

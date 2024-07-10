@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-postgres
+  namespace: tp-monitoring
+spec:
+  type: ClusterIP
+  selector:
+    name: postgres
+  ports:
+  #-- port du service
+  - port: 5432
+  #-- port du conteneur
+    targetPort: 5432
+    protocol: TCP
+    name: port-postgres
